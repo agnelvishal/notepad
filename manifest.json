@@ -3,7 +3,7 @@
     "lang": "English",
     "name": "Notepad",
     "scope": "/notepad/",
-    "display": "fullscreen",
+    "display": "standalone",
     "start_url": "https://sarchy.co/notepad/",
     "short_name": "Notepad",
     "theme_color": "#b2dfdb",
