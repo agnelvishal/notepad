@@ -4,7 +4,7 @@
     "name": "Notepad",
     "scope": "/notepad/",
     "display": "fullscreen",
-    "start_url": "https://sarchy.co/notepad/",
+    "start_url": "http://agnelvishal.github.io/notepad/",
     "short_name": "Notepad",
     "theme_color": "#b2dfdb",
     "description": "A super simple web app for taking notes. It let's us type anywhere on the screen",
