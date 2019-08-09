@@ -1,0 +1,100 @@
+<html>
+
+<head>
+    <title>
+        Notepad
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Arapey&display=swap" rel="stylesheet">
+    <link rel='manifest' href='/manifest.json'>
+    <script src="pwabuilder-sw-register.js">  </script>
+    
+    <style>
+        body {
+            background: #b2dfdb;
+            font-family: 'Arapey', serif;
+
+        }
+
+        input {
+            font-family: 'Arapey', serif;
+            border-style: dotted;
+            border-width: 0 0 2px;
+            border-color: rgba(119, 215, 185, .8);
+            background: #b2dfdb;
+            padding: 2px;
+            font-size: 24px;
+
+
+        }
+    </style>
+    <script>
+        window.addEventListener('load', function () {
+            if (localStorage["html"]) {
+                let html = localStorage["html"];
+                document.body.innerHTML = html;
+
+
+                let allInput = document.querySelectorAll("input")
+                for (i = 0; i < allInput.length; i++) {
+                    allInput[i].value = localStorage.getItem(allInput[i].id);
+                }
+
+            }
+            if (!localStorage.getItem('idCount')) {
+                localStorage.setItem("idCount", "0");
+            }
+
+        });
+
+        document.addEventListener("click", (e) => {
+            if (e.target.tagName != "INPUT") {
+
+                let input = document.createElement("input");
+                input.setAttribute("type", "text");
+                input.style.width = "100px";
+                input.setAttribute("onInput", "this.style.width = ((this.value.length + 2) * 10) + 'px';");
+                input.setAttribute("onkeypress", "this.style.width = ((this.value.length + 2) * 10) + 'px';");
+                // input.setAttribute("onkeypress", "this.style.width = this.scrollWidth+10 + 'px';");
+
+                //Set position  
+                input.style.position = "absolute";
+                input.style.left = e.pageX + "px";
+                input.style.top = e.pageY + "px";
+
+                //Set id
+                let count = parseInt(localStorage.getItem('idCount')) + 1
+                localStorage.setItem("idCount", count);
+                input.setAttribute("id", count);
+
+
+                // Store Input value
+                input.addEventListener('input', function (evt) {
+                    if (this.value.length==0)
+                    {
+                        this.remove();
+                    }
+                    else
+                    {
+                    localStorage.setItem(this.id, this.value);
+                    }
+                });
+
+
+                //Add
+                document.body.appendChild(input);
+                input.focus();
+            }
+            var html = document.body.innerHTML;
+            localStorage.setItem("html", html);
+        });
+    </script>
+</head>
+
+<body>
+    <h3 style="text-align: center;"> Click and Type Anywhere on this screen !!!</h3>
+    <!-- <input type="text" oninput="this.style.width = ((this.value.length + 2) * 8) + 'px';" id="0" style="width: 352px; position: absolute; left: 73px; top: 107px;" value="Click and Type Anywhere on this screen !!!"> -->
+</body>
+
+
+</html>
