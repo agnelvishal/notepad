@@ -70,7 +70,7 @@
         });
 
         document.addEventListener("click", (e) => {
-            if (e.target.tagName != "INPUT") {
+            if (e.target.tagName != "INPUT" || e.target.tagName != "BUTTON") {
 
                 let input = document.createElement("input");
                 input.setAttribute("type", "text");
