@@ -73,7 +73,7 @@
 
         document.addEventListener("click", (e) => {
             console.log(e.target.tagName)
-            if (e.target.tagName != "INPUT" || e.target.tagName != "BUTTON") {
+            if (e.target.tagName != "INPUT" && e.target.tagName != "BUTTON") {
 
                 let input = document.createElement("input");
                 input.setAttribute("type", "text");
