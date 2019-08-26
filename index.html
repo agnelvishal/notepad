@@ -7,24 +7,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <link href="https://fonts.googleapis.com/css?family=Arapey&display=swap" rel="stylesheet">
     <link rel='manifest' href='manifest.json'>
-   <script src="https://unpkg.com/blockstack@19.2.1/dist/blockstack.js" integrity="sha384-+qYCYoUGzsMLAzHm80c4DyhbWgHBBb2N0RFqsg7Lws5ljtBtj/IwpgxZkiR7j7lp" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/blockstack@19.2.1/dist/blockstack.js"
+        integrity="sha384-+qYCYoUGzsMLAzHm80c4DyhbWgHBBb2N0RFqsg7Lws5ljtBtj/IwpgxZkiR7j7lp"
+        crossorigin="anonymous"></script>
     <script>
 
-    if ("serviceWorker" in navigator) {
-      if (navigator.serviceWorker.controller) {
-        console.log("[PWA Builder] active service worker found, no need to register");
-      } else {
-        // Register the service worker
-        navigator.serviceWorker
-          .register("pwabuilder-sw.js", {
-            scope: "./"
-          })
-          .then(function (reg) {
-            console.log("[PWA Builder] Service worker has been registered for scope: " + reg.scope);
-          });
-      }
-    }
-        </script>
+        if ("serviceWorker" in navigator) {
+            if (navigator.serviceWorker.controller) {
+                console.log("[PWA Builder] active service worker found, no need to register");
+            } else {
+                // Register the service worker
+                navigator.serviceWorker
+                    .register("pwabuilder-sw.js", {
+                        scope: "./"
+                    })
+                    .then(function (reg) {
+                        console.log("[PWA Builder] Service worker has been registered for scope: " + reg.scope);
+                    });
+            }
+        }
+    </script>
     <style>
         body {
             background: #b2dfdb;
@@ -43,11 +45,11 @@
 
 
         }
-        button
-        {
-            position:absolute;
-            right:0;
-            border:"white"
+
+        button {
+            position: absolute;
+            right: 0;
+            border: "white"
         }
     </style>
     <script>
@@ -70,6 +72,7 @@
         });
 
         document.addEventListener("click", (e) => {
+            console.log(e.target.tagName)
             if (e.target.tagName != "INPUT" || e.target.tagName != "BUTTON") {
 
                 let input = document.createElement("input");
@@ -92,13 +95,11 @@
 
                 // Store Input value
                 input.addEventListener('input', function (evt) {
-                    if (this.value.length==0)
-                    {
+                    if (this.value.length == 0) {
                         this.remove();
                     }
-                    else
-                    {
-                    localStorage.setItem(this.id, this.value);
+                    else {
+                        localStorage.setItem(this.id, this.value);
                     }
                 });
 
@@ -117,35 +118,37 @@
     <h3 style="text-align: center;"> Click and Type Anywhere on this screen !!!</h3>
     <button id="signin-button">Sign in with Blockstack </button>
     <script>
-  const appConfig = new blockstack.AppConfig();
-  const userSession = new blockstack.UserSession({ appConfig: appConfig });
+        window.addEventListener('load', function () {
 
- document.getElementById('signin-button').addEventListener('click', function() {
-   userSession.redirectToSignIn();
- });
+            const appConfig = new blockstack.AppConfig();
+            const userSession = new blockstack.UserSession({ appConfig: appConfig });
 
-if (userSession.isUserSignedIn()) {
+            document.getElementById('signin-button').addEventListener('click', function () {
+                userSession.redirectToSignIn();
+            });
 
- document.getElementById('signin-button').remove();
-storePref();
+            if (userSession.isUserSignedIn()) {
 
- } else if (userSession.isSignInPending()) {
-   userSession.handlePendingSignIn()
-   .then(() => {
-console.log("Signed in by pending");
- document.getElementById('signin-button').remove();
-storePref();
-   })
- }
+                document.getElementById('signin-button').remove();
+                storePref();
 
-// Storing Preference in storage
-function storePref()
-{
-console.log("Will store typed text in Blockstack storage")
+            } else if (userSession.isSignInPending()) {
+                userSession.handlePendingSignIn()
+                    .then(() => {
+                        console.log("Signed in by pending");
+                        document.getElementById('signin-button').remove();
+                        storePref();
+                    })
+            }
 
-}
+            // Storing Preference in storage
+            function storePref() {
+                console.log("Will store typed text in Blockstack storage")
 
-</script>
+            }
+
+        }
+    </script>
     <!-- <input type="text" oninput="this.style.width = ((this.value.length + 2) * 8) + 'px';" id="0" style="width: 352px; position: absolute; left: 73px; top: 107px;" value="Click and Type Anywhere on this screen !!!"> -->
 </body>
 
