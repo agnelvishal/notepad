@@ -132,11 +132,11 @@
 
             } else 
             {                document.getElementById('signin-button').addEventListener('click', function () {
-                    userSession.redirectToSignIn();
+                    userSession.redirectToSignIn("https://sarchy.co/notepad");
                 });
 
                 if (userSession.isSignInPending()) {
-                userSession.handlePendingSignIn()
+                userSession.handlePendingSignIn("")
                     .then(() => {
                         console.log("Signed in by pending");
                         document.getElementById('signin-button').remove();
