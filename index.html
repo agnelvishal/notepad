@@ -125,15 +125,17 @@
 
             if (userSession.isUserSignedIn()) {
 
-                document.getElementById('signin-button').addEventListener('click', function () {
-                    userSession.redirectToSignIn();
-                });
 
 
                 document.getElementById('signin-button').remove();
                 afterLogin();
 
-            } else if (userSession.isSignInPending()) {
+            } else 
+            {                document.getElementById('signin-button').addEventListener('click', function () {
+                    userSession.redirectToSignIn();
+                });
+
+                if (userSession.isSignInPending()) {
                 userSession.handlePendingSignIn()
                     .then(() => {
                         console.log("Signed in by pending");
@@ -141,7 +143,7 @@
                         afterLogin();
                     })
             }
-
+            }
             function storeData() {
                 var Shtml = document.body.innerHTML;
                 let options = {
