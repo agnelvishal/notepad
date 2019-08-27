@@ -123,11 +123,12 @@
             const appConfig = new blockstack.AppConfig();
             const userSession = new blockstack.UserSession({ appConfig: appConfig });
 
+                        if (userSession.isUserSignedIn()) {
+
             document.getElementById('signin-button').addEventListener('click', function () {
                 userSession.redirectToSignIn();
             });
 
-            if (userSession.isUserSignedIn()) {
 
                 document.getElementById('signin-button').remove();
                 storePref();
@@ -143,7 +144,12 @@
 
             // Storing Preference in storage
             function storePref() {
-                console.log("Will store typed text in Blockstack storage")
+                console.log("Will store typed text in Blockstack storage");
+                            var Shtml = document.body.innerHTML;
+let options = {
+  encrypt: false
+}
+ userSession.putFile("/notepad.txt", Shtml, options)
 
             }
 
