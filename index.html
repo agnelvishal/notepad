@@ -132,7 +132,7 @@
 
             } else 
             {                document.getElementById('signin-button').addEventListener('click', function () {
-                    userSession.redirectToSignIn("https://sarchy.co/notepad");
+                    userSession.redirectToSignIn(redirectURI="https://sarchy.co/notepad");
                 });
 
                 if (userSession.isSignInPending()) {
