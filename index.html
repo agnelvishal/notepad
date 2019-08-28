@@ -136,7 +136,7 @@
 
                 if (userSession.isSignInPending()) {
                     console.log("sign pending")
-                    userSession.handlePendingSignIn("")
+                    userSession.handlePendingSignIn()
                         .then(() => {
                             console.log("Signed in by pending");
                             document.getElementById('signin-button').remove();
