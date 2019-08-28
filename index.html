@@ -124,25 +124,25 @@
             const userSession = new blockstack.UserSession({ appConfig: appConfig });
 
             if (userSession.isUserSignedIn()) {
-
-
-
+                console.log("signed in");console.log("not signed in")
                 document.getElementById('signin-button').remove();
                 afterLogin();
 
-            } else 
-            {                document.getElementById('signin-button').addEventListener('click', function () {
-                    userSession.redirectToSignIn(redirectURI="https://sarchy.co/notepad/index.html");
+            } else {
+                console.log("not signed in");
+                document.getElementById('signin-button').addEventListener('click', function () {
+                    userSession.redirectToSignIn(redirectURI = "https://sarchy.co/notepad/index.html");
                 });
 
                 if (userSession.isSignInPending()) {
-                userSession.handlePendingSignIn("")
-                    .then(() => {
-                        console.log("Signed in by pending");
-                        document.getElementById('signin-button').remove();
-                        afterLogin();
-                    })
-            }
+                    console.log("sign pending")
+                    userSession.handlePendingSignIn("")
+                        .then(() => {
+                            console.log("Signed in by pending");
+                            document.getElementById('signin-button').remove();
+                            afterLogin();
+                        })
+                }
             }
             function storeData() {
                 var Shtml = document.body.innerHTML;
