@@ -174,15 +174,18 @@ restoreFromLocal();
             // After login in storage
             function afterLogin() {
                 console.log("Will store typed text in Blockstack storage");
+                var bDiv = document.createElement("div")
+                bDiv.id="button";
                 var b = document.createElement("button")
                 b.innerText = "Backup"
                 b.addEventListener("click", function () { storeData(); });
-                document.body.appendChild(b)
+                bDiv.appendChild(b)
                
                 var c = document.createElement("button")
                 c.innerText = "Restore"
                 c.addEventListener("click", function () { getData(); });
-                document.body.appendChild(c)
+                bDiv.appendChild(c)
+                document.body.appendChild(bDiv)
             }
 
         })
