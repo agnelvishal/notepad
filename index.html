@@ -53,16 +53,21 @@
         }
     </style>
     <script>
+
         window.addEventListener('load', function () {
+            function restoreFromLocal(){
+            let allInput = document.querySelectorAll("input")
+                for (i = 0; i < allInput.length; i++) {
+                    allInput[i].value = localStorage.getItem(allInput[i].id);
+                }
+            }   
+            
             if (localStorage["html"]) {
                 let html = localStorage["html"];
                 document.body.innerHTML = html;
 
+restoreFromLocal();
 
-                let allInput = document.querySelectorAll("input")
-                for (i = 0; i < allInput.length; i++) {
-                    allInput[i].value = localStorage.getItem(allInput[i].id);
-                }
 
             }
             if (!localStorage.getItem('idCount')) {
@@ -146,10 +151,24 @@
             }
             function storeData() {
                 var Shtml = document.body.innerHTML;
-                let options = {
+                var options = {
                     encrypt: false
                 }
-                userSession.putFile("/notepad.txt", Shtml, options)
+                userSession.putFile("/notepadHtml.txt", Shtml, options)
+                userSession.putFile("/notepadText.txt", JSON.stringify(localStorage), options)
+
+            }
+            function getData(){
+                            var options = {
+                    encrypt: false
+                }
+                userSession.getFile("/notepadText.txt", options)
+ .then((fileContents) => {
+            var dataFromBlock = JSON.parse(fileContents)
+            localStorage=dataFromBlock
+            //console.log(fileContents)
+ });
+    
             }
 
             // After login in storage
@@ -159,7 +178,11 @@
                 b.innerText = "Backup"
                 b.addEventListener("click", function () { storeData(); });
                 document.body.appendChild(b)
-
+               
+                var c = document.createElement("button")
+                c.innerText = "Restore"
+                c.addEventListener("click", function () { getData(); });
+                document.body.appendChild(c)
             }
 
         })
