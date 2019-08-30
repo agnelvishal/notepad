@@ -170,11 +170,11 @@ restoreFromLocal();
                 }
                 userSession.getFile("/notepadText.txt", options)
  .then((fileContents) => {
-            //var dataFromBlock = JSON.parse(fileContents)
+            var dataFromBlock = JSON.parse(fileContents)
             //localStorage=dataFromBlock
          
             //console.log(fileContents)
-            for (var i in fileContents){  localStorage.setItem(i,fileContents[i])}
+            for (var i in dataFromBlock){  localStorage.setItem(i,dataFromBlock[i])}
                     
  });
     
