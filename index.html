@@ -172,8 +172,10 @@ restoreFromLocal();
  .then((fileContents) => {
             //var dataFromBlock = JSON.parse(fileContents)
             //localStorage=dataFromBlock
-            localStorage=fileContents
+         
             //console.log(fileContents)
+            for (var i in fileContents){  localStorage.setItem(i,fileContents[i])}
+                    
  });
     
             }
