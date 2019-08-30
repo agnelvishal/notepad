@@ -42,16 +42,15 @@
             background: #b2dfdb;
             padding: 2px;
             font-size: 24px;
-
-
         }
-        
+
         #button {
             position: absolute;
             right: 0;
         }
+
         button {
-              margin: 2px;
+            margin: 2px;
         }
     </style>
 
@@ -59,27 +58,27 @@
 
 <body>
     <h3 style="text-align: center;"> Click and Type Anywhere on this screen !!!</h3>
-    
+
     <div id="button">
-    <button id="signin-button">Sign in with Blockstack </button>
+        <button id="signin-button">Sign in with Blockstack </button>
     </div>
-        
-        <script>
-            function restoreFromLocal(){
-            let allInput = document.querySelectorAll("input")
-                for (i = 0; i < allInput.length; i++) {
-                    allInput[i].value = localStorage.getItem(allInput[i].id);
-                }
-            } 
-        window.addEventListener('load', function () {            
+
+    <script>
+        function restoreFromLocal() {
+
             if (localStorage["html"]) {
                 let html = localStorage["html"];
                 document.body.innerHTML = html;
 
-restoreFromLocal();
-
-
+                let allInput = document.querySelectorAll("input")
+                for (i = 0; i < allInput.length; i++) {
+                    allInput[i].value = localStorage.getItem(allInput[i].id);
+                }
             }
+        }
+        window.addEventListener('load', function () {
+            restoreFromLocal();
+
             if (!localStorage.getItem('idCount')) {
                 localStorage.setItem("idCount", "0");
             }
@@ -133,7 +132,7 @@ restoreFromLocal();
             const userSession = new blockstack.UserSession({ appConfig: appConfig });
 
             if (userSession.isUserSignedIn()) {
-                console.log("signed in");console.log("not signed in")
+                console.log("signed in"); console.log("not signed in")
                 document.getElementById('signin-button').remove();
                 afterLogin();
 
@@ -160,35 +159,35 @@ restoreFromLocal();
                 }
                 userSession.putFile("/notepadHtml.txt", Shtml, options)
                 userSession.putFile("/notepadText.txt", JSON.stringify(localStorage), options)
-               
+
             }
-            function getData(){
-                            var options = {
+            function getData() {
+                var options = {
                     decrypt: false
                 }
                 userSession.getFile("/notepadText.txt", options)
- .then((fileContents) => {
-            var dataFromBlock = JSON.parse(fileContents)
-            //localStorage=dataFromBlock
-         
-            //console.log(fileContents)
-            for (var i in dataFromBlock){  localStorage.setItem(i,dataFromBlock[i])}
-                    restoreFromLocal();
-                    
- });
-    
+                    .then((fileContents) => {
+                        var dataFromBlock = JSON.parse(fileContents)
+                        //localStorage=dataFromBlock
+
+                        //console.log(fileContents)
+                        for (var i in dataFromBlock) { localStorage.setItem(i, dataFromBlock[i]) }
+                        restoreFromLocal();
+
+                    });
+
             }
 
             // After login in storage
             function afterLogin() {
                 console.log("Will store typed text in Blockstack storage");
                 var bDiv = document.createElement("div")
-                bDiv.id="button";
+                bDiv.id = "button";
                 var b = document.createElement("button")
                 b.innerText = "Backup"
                 b.addEventListener("click", function () { storeData(); });
                 bDiv.appendChild(b)
-               
+
                 var c = document.createElement("button")
                 c.innerText = "Restore"
                 c.addEventListener("click", function () { getData(); });
