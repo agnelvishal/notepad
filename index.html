@@ -54,7 +54,17 @@
               margin: 2px;
         }
     </style>
-    <script>
+
+</head>
+
+<body>
+    <h3 style="text-align: center;"> Click and Type Anywhere on this screen !!!</h3>
+    
+    <div id="button">
+    <button id="signin-button">Sign in with Blockstack </button>
+    </div>
+        
+        <script>
 
         window.addEventListener('load', function () {
             function restoreFromLocal(){
@@ -118,17 +128,7 @@ restoreFromLocal();
             var html = document.body.innerHTML;
             localStorage.setItem("html", html);
         });
-    </script>
-</head>
 
-<body>
-    <h3 style="text-align: center;"> Click and Type Anywhere on this screen !!!</h3>
-    
-    <div id="button">
-    <button id="signin-button">Sign in with Blockstack </button>
-    </div>
-        
-    <script>
         window.addEventListener('load', function () {
 
             const appConfig = new blockstack.AppConfig();
@@ -175,7 +175,7 @@ restoreFromLocal();
          
             //console.log(fileContents)
             for (var i in dataFromBlock){  localStorage.setItem(i,dataFromBlock[i])}
-                    
+                    restoreFromLocal();
  });
     
             }
