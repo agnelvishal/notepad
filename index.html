@@ -161,8 +161,8 @@ restoreFromLocal();
                     encrypt: false
                 }
                 userSession.putFile("/notepadHtml.txt", Shtml, options)
-                //userSession.putFile("/notepadText.txt", JSON.stringify(localStorage), options)
-                userSession.putFile("/notepadText.txt", localStorage, options)
+                userSession.putFile("/notepadText.txt", JSON.stringify(localStorage), options)
+               
             }
             function getData(){
                             var options = {
