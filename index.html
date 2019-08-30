@@ -55,6 +55,16 @@
     </style>
 
     <script>
+// Clear localStorage when manifest version is outdated.        
+async function manifestF(){ 
+    var m = await fetch("manifest.json"); 
+    var mj = await m.json(); 
+if (typeof mj === 'undefined')
+{
+localStorage.clear();
+}
+   
+                          }
         function restoreFromLocal() {
 
             if (localStorage["html"]) {
