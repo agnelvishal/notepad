@@ -166,7 +166,7 @@ restoreFromLocal();
             }
             function getData(){
                             var options = {
-                    encrypt: false
+                    decrypt: false
                 }
                 userSession.getFile("/notepadText.txt", options)
  .then((fileContents) => {
