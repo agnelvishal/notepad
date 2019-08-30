@@ -65,15 +65,13 @@
     </div>
         
         <script>
-
-        window.addEventListener('load', function () {
             function restoreFromLocal(){
             let allInput = document.querySelectorAll("input")
                 for (i = 0; i < allInput.length; i++) {
                     allInput[i].value = localStorage.getItem(allInput[i].id);
                 }
-            }   
-            
+            } 
+        window.addEventListener('load', function () {            
             if (localStorage["html"]) {
                 let html = localStorage["html"];
                 document.body.innerHTML = html;
