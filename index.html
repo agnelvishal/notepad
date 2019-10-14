@@ -5,6 +5,7 @@
         Notepad
     </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta name="description" content="Online Notepad">
     <link href="https://fonts.googleapis.com/css?family=Arapey&display=swap" rel="stylesheet">
     <link rel='manifest' href='manifest.json'>
     <script src="https://unpkg.com/blockstack@19.2.1/dist/blockstack.js"
@@ -55,15 +56,15 @@
     </style>
 
     <script>
-// Clear localStorage when manifest version is outdated.        
-async function manifestF(){ 
-    var m = await fetch("manifest.json"); 
-    var mj = await m.json(); 
+// Clear localStorage when manifest version is outdated.
+async function manifestF(){
+    var m = await fetch("manifest.json");
+    var mj = await m.json();
 if (typeof mj === 'undefined')
 {
 localStorage.clear();
 }
-   
+
                           }
         function restoreFromLocal() {
 
@@ -97,7 +98,7 @@ localStorage.clear();
                 input.setAttribute("onkeypress", "this.style.width = ((this.value.length + 2) * 10) + 'px';");
                 // input.setAttribute("onkeypress", "this.style.width = this.scrollWidth+10 + 'px';");
 
-                //Set position  
+                //Set position
                 input.style.position = "absolute";
                 input.style.left = e.pageX + "px";
                 input.style.top = e.pageY + "px";
@@ -169,7 +170,7 @@ localStorage.clear();
                 console.log("getdata")
                 userSession.getFile("/notepadText.txt", options)
                     .then((fileContents) => {
-                    
+
                         var dataFromBlock = JSON.parse(fileContents)
                         //localStorage=dataFromBlock
 
