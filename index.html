@@ -1,16 +1,22 @@
 <html>
-
 <head>
-    <title>
-        Notepad
-    </title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <meta name="description" content="Online Notepad">
+<!-- TITLE -->
+<title>Notepad</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+<meta name="description" content="Online Notepad">
+
+<!-- GOOGLE FONT -->
     <link href="https://fonts.googleapis.com/css?family=Arapey&display=swap" rel="stylesheet">
+<!-- MANIFEST.JSON -->
     <link rel='manifest' href='manifest.json'>
+<!-- JAVASCRIPT -->
     <script src="https://unpkg.com/blockstack@19.2.1/dist/blockstack.js"
         integrity="sha384-+qYCYoUGzsMLAzHm80c4DyhbWgHBBb2N0RFqsg7Lws5ljtBtj/IwpgxZkiR7j7lp"
         crossorigin="anonymous"></script>
+<!-- FAVICON -->
+    <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
+<!-- SCRIPT -->
     <script>
 
         if ("serviceWorker" in navigator) {
@@ -28,11 +34,12 @@
             }
         }
     </script>
+<!-- STYLING -->
     <style>
         body {
             background: #b2dfdb;
             font-family: 'Arapey', serif;
-
+            
         }
 
         input {
@@ -47,25 +54,53 @@
 
         #button {
             position: absolute;
-            right: 0;
+            right: 53rem;
         }
 
         button {
             margin: 2px;
+            padding: 14px;
+            border-radius: 50rem;
+            background-color: #00695c;
+            color: #fff;
+            outline: none;
+            font-size: 1.5rem;
+            font-family: 'Arapey', serif;
+
+        }
+
+        h3{
+            text-align: center;
+            font-weight: 600;
+            font-size: 2rem;
+            color: #00695c ;
+        }
+
+        p{
+            text-align: center;
+            font-weight: 500;
+            font-size: 1rem;
+            color: #00695c;
+            position: relative;
+            top: -0.5rem;
+        }
+
+        .intro{
+
         }
     </style>
-
+<!-- SCRIPT -->
     <script>
-// Clear localStorage when manifest version is outdated.
-async function manifestF(){
-    var m = await fetch("manifest.json");
-    var mj = await m.json();
-if (typeof mj === 'undefined')
-{
-localStorage.clear();
-}
+        // Clear localStorage when manifest version is outdated.
+        async function manifestF() {
+            var m = await fetch("manifest.json");
+            var mj = await m.json();
+            if (typeof mj === 'undefined') {
+                localStorage.clear();
+            }
 
-                          }
+        }
+
         function restoreFromLocal() {
 
             if (localStorage["html"]) {
@@ -113,8 +148,7 @@ localStorage.clear();
                 input.addEventListener('input', function (evt) {
                     if (this.value.length == 0) {
                         this.remove();
-                    }
-                    else {
+                    } else {
                         localStorage.setItem(this.id, this.value);
                     }
                 });
@@ -131,10 +165,13 @@ localStorage.clear();
         window.addEventListener('load', function () {
 
             const appConfig = new blockstack.AppConfig();
-            const userSession = new blockstack.UserSession({ appConfig: appConfig });
+            const userSession = new blockstack.UserSession({
+                appConfig: appConfig
+            });
 
             if (userSession.isUserSignedIn()) {
-                console.log("signed in"); console.log("not signed in")
+                console.log("signed in");
+                console.log("not signed in")
                 document.getElementById('signin-button').remove();
                 afterLogin();
 
@@ -154,6 +191,7 @@ localStorage.clear();
                         })
                 }
             }
+
             function storeData() {
                 var Shtml = document.body.innerHTML;
                 var options = {
@@ -163,6 +201,7 @@ localStorage.clear();
                 userSession.putFile("/notepadText.txt", JSON.stringify(localStorage), options)
 
             }
+
             function getData() {
                 var options = {
                     decrypt: false
@@ -175,7 +214,9 @@ localStorage.clear();
                         //localStorage=dataFromBlock
 
                         console.log(fileContents)
-                        for (var i in dataFromBlock) { localStorage.setItem(i, dataFromBlock[i]) }
+                        for (var i in dataFromBlock) {
+                            localStorage.setItem(i, dataFromBlock[i])
+                        }
                         restoreFromLocal();
 
                     });
@@ -189,23 +230,31 @@ localStorage.clear();
                 bDiv.id = "button";
                 var b = document.createElement("button")
                 b.innerText = "Backup"
-                b.addEventListener("click", function () { storeData(); });
+                b.addEventListener("click", function () {
+                    storeData();
+                });
                 bDiv.appendChild(b)
 
                 var c = document.createElement("button")
                 c.innerText = "Restore"
-                c.addEventListener("click", function () { getData(); });
+                c.addEventListener("click", function () {
+                    getData();
+                });
                 bDiv.appendChild(c)
                 document.body.appendChild(bDiv)
             }
 
         })
     </script>
-
 </head>
-
+<!-- BODY INITIATES -->
 <body>
-    <h3 style="text-align: center;"> Click and Type Anywhere on this screen !!!</h3>
+    <h3> Click and Type Anywhere on this screen !!!</h3>
+    <div class="intro">
+        <p>The app is named as <b>ONLINE NOTEPAD</b>. This app allows the user to write/type anything and anywhere in the space
+        provided.</p>
+    </div>
+    
 
     <div id="button">
         <button id="signin-button">Sign in with Blockstack </button>
