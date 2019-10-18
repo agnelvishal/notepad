@@ -211,8 +211,7 @@
             // After login in storage
             function afterLogin() {
                 console.log("Will store typed text in Blockstack storage");
-                var bDiv = document.createElement("div")
-                bDiv.id = "button";
+                var bDiv = document.querySelector("#button")
                 var b = document.createElement("button")
                 b.innerText = "Backup"
                 b.id = "backup"
