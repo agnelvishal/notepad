@@ -204,11 +204,13 @@ localStorage.clear();
                 bDiv.id = "button";
                 var b = document.createElement("button")
                 b.innerText = "Backup"
+                b.id="backup"
                 b.addEventListener("click", function () { storeData(); });
                 bDiv.appendChild(b)
 
                 var c = document.createElement("button")
                 c.innerText = "Restore"
+                c.id="restore"
                 c.addEventListener("click", function () { getData(); });
                 bDiv.appendChild(c)
                 document.body.appendChild(bDiv)
