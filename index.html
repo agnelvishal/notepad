@@ -145,6 +145,9 @@ localStorage.clear();
 
         window.addEventListener('load', function () {
 
+            document.querySelector("#clear").addEventListener("click", function () { avClear(); });
+            
+            
             const appConfig = new blockstack.AppConfig();
             const userSession = new blockstack.UserSession({ appConfig: appConfig });
 
@@ -194,6 +197,7 @@ localStorage.clear();
                         restoreFromLocal();
                     document.querySelector("#backup").addEventListener("click", function () { storeData(); });
                     document.querySelector("#restore").addEventListener("click", function () { getData(); });
+                    document.querySelector("#clear").addEventListener("click", function () { avClear(); });
                     });
 
             }
@@ -227,6 +231,8 @@ localStorage.clear();
 
     <div id="button">
         <button id="signin-button">Sign in with Blockstack </button>
+        <button id="clear"> Clear screen </button>
+
     </div>
     <!-- <input type="text" oninput="this.style.width = ((this.value.length + 2) * 8) + 'px';" id="0" style="width: 352px; position: absolute; left: 73px; top: 107px;" value="Click and Type Anywhere on this screen !!!"> -->
 </body>
