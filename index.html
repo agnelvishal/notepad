@@ -192,7 +192,8 @@ localStorage.clear();
                         console.log(fileContents)
                         for (var i in dataFromBlock) { localStorage.setItem(i, dataFromBlock[i]) }
                         restoreFromLocal();
-
+                    document.querySelector("#backup").addEventListener("click", function () { storeData(); });
+                    document.querySelector("#restore").addEventListener("click", function () { getData(); });
                     });
 
             }
