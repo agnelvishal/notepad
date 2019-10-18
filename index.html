@@ -49,16 +49,16 @@
             position: absolute;
             right: 0;
         }
-        
-      h3{
+
+        h3 {
             text-align: center;
             font-weight: 600;
             font-size: 2rem;
-            color: #00695c ;
+            color: #00695c;
         }
 
 
-            button {
+        button {
             margin: 2px;
             padding: 7px;
             border-radius: 50rem;
@@ -71,16 +71,15 @@
     </style>
 
     <script>
-// Clear localStorage when manifest version is outdated.
-async function manifestF(){
-    var m = await fetch("manifest.json");
-    var mj = await m.json();
-if (typeof mj === 'undefined')
-{
-localStorage.clear();
-}
+        // Clear localStorage when manifest version is outdated.
+        async function manifestF() {
+            var m = await fetch("manifest.json");
+            var mj = await m.json();
+            if (typeof mj === 'undefined') {
+                localStorage.clear();
+            }
 
-                          }
+        }
         function restoreFromLocal() {
 
             if (localStorage["html"]) {
@@ -91,6 +90,13 @@ localStorage.clear();
                 for (i = 0; i < allInput.length; i++) {
                     allInput[i].value = localStorage.getItem(allInput[i].id);
                 }
+            }
+        }
+        function avClear() {
+            var inputs = document.querySelectorAll("input");
+            var i;
+            for (i = 0; i < inputs.length; i++) {
+                inputs[i].remove();
             }
         }
         window.addEventListener('load', function () {
@@ -146,8 +152,8 @@ localStorage.clear();
         window.addEventListener('load', function () {
 
             document.querySelector("#clear").addEventListener("click", function () { avClear(); });
-            
-            
+
+
             const appConfig = new blockstack.AppConfig();
             const userSession = new blockstack.UserSession({ appConfig: appConfig });
 
@@ -195,9 +201,9 @@ localStorage.clear();
                         console.log(fileContents)
                         for (var i in dataFromBlock) { localStorage.setItem(i, dataFromBlock[i]) }
                         restoreFromLocal();
-                    document.querySelector("#backup").addEventListener("click", function () { storeData(); });
-                    document.querySelector("#restore").addEventListener("click", function () { getData(); });
-                    document.querySelector("#clear").addEventListener("click", function () { avClear(); });
+                        document.querySelector("#backup").addEventListener("click", function () { storeData(); });
+                        document.querySelector("#restore").addEventListener("click", function () { getData(); });
+                        document.querySelector("#clear").addEventListener("click", function () { avClear(); });
                     });
 
             }
@@ -209,13 +215,13 @@ localStorage.clear();
                 bDiv.id = "button";
                 var b = document.createElement("button")
                 b.innerText = "Backup"
-                b.id="backup"
+                b.id = "backup"
                 b.addEventListener("click", function () { storeData(); });
                 bDiv.appendChild(b)
 
                 var c = document.createElement("button")
                 c.innerText = "Restore"
-                c.id="restore"
+                c.id = "restore"
                 c.addEventListener("click", function () { getData(); });
                 bDiv.appendChild(c)
                 document.body.appendChild(bDiv)
